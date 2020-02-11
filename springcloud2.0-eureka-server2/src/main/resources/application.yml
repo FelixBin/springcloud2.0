@@ -1,0 +1,17 @@
+server:
+  port: 9100
+
+# 定义eureka集群时，需要定义集群服务名称，各节点的名称定义要一致
+spring:
+  application:
+    name: app-eureka-cluster
+eureka:
+  instance:
+  #注册中心ip地址
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+    # 搭建eureka集群时，需要将自己注册到注册中心 
+    register-with-eureka: true
+    fetch-registry: true
