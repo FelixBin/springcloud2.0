@@ -1,0 +1,22 @@
+# 会员服务项目端口号
+server:
+  port: 8001
+# 服务别名--服务注册到注册中心的名称
+spring:
+  application:
+    name: app-order
+eureka:
+  client:
+    service-url:
+      #将当前服务注册到eureka注册中心
+      defaultZone: http://localhost:8100/eureka/
+    # 将自己注册到注册中心，设置为true
+    register-with-eureka: true
+    # 检索服务信息
+    fetch-registry: true
+  # eureka客户端与eureka服务端心跳检测及续约时间，本地开发时设置小些，保证服务不可用时就踢出
+  instance:
+    # eureka客户端向服务端发送心跳的时间间隔，单位为秒
+    lease-renewal-interval-in-seconds: 1
+    # eureka服务端在收到最后一次心跳检测之后等待的事件上限，单位为秒，超过此时间则剔除
+    lease-expiration-duration-in-seconds: 2
