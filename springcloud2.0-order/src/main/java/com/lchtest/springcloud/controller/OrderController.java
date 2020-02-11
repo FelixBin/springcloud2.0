@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 /**
- * ¶©µ¥·şÎñ-member·şÎñµÄÏû·ÑÕß
+ * è®¢å•æœåŠ¡-memberæœåŠ¡çš„æ¶ˆè´¹è€…
  * @author pc
  *
  */
@@ -16,9 +16,9 @@ import org.springframework.web.client.RestTemplate;
 public class OrderController {
 	
 	/**
-	 * 1. springcloud·şÎñµ÷ÓÃÓĞÁ½ÖÖ·½Ê½£ºrestTemplate ºÍFegin
-	 * 2. resttemplateÊÇÓÉspringboot-web×é¼şÌá¹©µÄ£¬Ä¬ÈÏÕûºÏÁËribbon¸ºÔØ¾ùºâÆ÷£¬
-	 * spring-cloud-starter-netflix-eureka-clientµÄÒÀÀµjar°ü¿ÉÒÔËµÃ÷£¬²¢ÇÒµ×²ãÒÀÀµµÄÊÇhttpclient£¨ÒÀÀµÁËhttpclient jar£©
+	 * 1. springcloudæœåŠ¡è°ƒç”¨æœ‰ä¸¤ç§æ–¹å¼ï¼šrestTemplate å’ŒFegin
+	 * 2. resttemplateæ˜¯ç”±springboot-webç»„ä»¶æä¾›çš„ï¼Œé»˜è®¤æ•´åˆäº†ribbonè´Ÿè½½å‡è¡¡å™¨ï¼Œ
+	 * spring-cloud-starter-netflix-eureka-clientçš„ä¾èµ–jaråŒ…å¯ä»¥è¯´æ˜ï¼Œå¹¶ä¸”åº•å±‚ä¾èµ–çš„æ˜¯httpclientï¼ˆä¾èµ–äº†httpclient jarï¼‰
 	 */
 	@Autowired
 	private RestTemplate restTemplate;
@@ -27,11 +27,11 @@ public class OrderController {
 	@ResponseBody
 	public String getOrder() {
 //		String url = "http://127.0.0.1:8000/getmember";
-		// Ê¹ÓÃ±ğÃûÈ¥×¢²áÖĞĞÄ»ñÈ¡¶ÔÓ¦·şÎñµ÷ÓÃµØÖ· Èç¹û±¨´íjava.net.UnknownHostException: member£¬ÔÚrestTemplate¶¨ÒåµÄµØ·½¼ÓÉÏ@LoadBalanced 
+		// ä½¿ç”¨åˆ«åå»æ³¨å†Œä¸­å¿ƒè·å–å¯¹åº”æœåŠ¡è°ƒç”¨åœ°å€ å¦‚æœæŠ¥é”™java.net.UnknownHostException: memberï¼Œåœ¨restTemplateå®šä¹‰çš„åœ°æ–¹åŠ ä¸Š@LoadBalanced 
 		String url = "http://member/getmember";
 		String result = restTemplate.getForObject(url, String.class);
-		System.out.println("¶©µ¥·şÎñµ÷ÓÃ»áÔ±·şÎñ:" + result);
-		return "¶©µ¥·şÎñµ÷ÓÃ»áÔ±·şÎñ½á¹û:" + result;
+		System.out.println("è®¢å•æœåŠ¡è°ƒç”¨ä¼šå‘˜æœåŠ¡:" + result);
+		return "è®¢å•æœåŠ¡è°ƒç”¨ä¼šå‘˜æœåŠ¡ç»“æœ:" + result;
 	}
 
 }

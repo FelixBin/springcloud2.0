@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-//@EnableEurekaClient 灏嗗綋鍓嶆湇鍔℃敞鍐屽埌eureka涓?
+//@EnableEurekaClient 灏嗗綋鍓嶆湇鍔℃敞鍐屽埌eureka娉ㄥ唽涓績
 @EnableEurekaClient
 public class OrderApp {
 	
@@ -16,12 +16,11 @@ public class OrderApp {
 		SpringApplication.run(OrderApp.class, args);
 	}
 	
-	// 将RestTemplate交给spring容器管理，controller中注入并使用
+	// 灏哛estTemplate浜ょ粰spring瀹瑰櫒绠＄悊锛宑ontroller涓敞鍏ュ苟浣跨敤
 	@Bean
-	// 如果使用rest方式以别名方式调用服务提供者的接口，需要依赖ribbon负载均衡器，	@LoadBalanced 表示启用ribbon负载均衡
+	// 濡傛灉浣跨敤rest鏂瑰紡浠ュ埆鍚嶆柟寮忚皟鐢ㄦ湇鍔℃彁渚涜�呯殑鎺ュ彛锛岄渶瑕佷緷璧杛ibbon璐熻浇鍧囪　鍣紝@LoadBalanced娉ㄨВ鍚敤ribbon璐熻浇鍧囪　
 	@LoadBalanced 
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-
 }
