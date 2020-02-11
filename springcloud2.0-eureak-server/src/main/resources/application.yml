@@ -1,0 +1,22 @@
+# 注册中心端口号
+server:
+  port: 8100
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      #服务的注册地址
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+     # defaultZone: http://localhost:8100/eureka/
+    # 是否将自己注册到注册中心，只有一个注册中心时选择false,注册中心为集群的时候需要设置为true
+    #register-with-eureka: false
+    # 单个注册中心，不需要去检索服务信息
+    #fetch-registry: false
+    # 搭建注册中心集群时，需要将自己注册到注册中心去，设置为true
+    register-with-eureka: true
+    fetch-registry: true
+# 定义eureka集群时，需要定义集群服务名称，各节点的名称定义要一致，单个注册中心可以补定义
+spring:
+  application:
+    name: app-eureka-cluster
