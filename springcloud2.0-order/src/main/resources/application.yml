@@ -1,0 +1,16 @@
+# 订单服务项目端口号
+server:
+  port: 8001
+# 服务别名--服务注册到注册中心的名称
+spring:
+  application:
+    name: order
+eureka:
+  client:
+    service-url:
+      #将当前服务注册到eureka注册中心
+      defaultZone: http://localhost:8100/eureka/,http://localhost:9100/eureka/
+    #将自己注册到注册中心，设置为true
+    register-with-eureka: true
+    #需要检索服务信息
+    fetch-registry: true
