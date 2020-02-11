@@ -5,13 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * eureka×¢²áÖĞĞÄ´î½¨
- * springcloud eureka×¢²áÖĞĞÄ2
+ * eurekaæ³¨å†Œä¸­å¿ƒæ­å»º
+ * springcloud eurekaæ³¨å†Œä¸­å¿ƒ2
  * @author pc
  *
  */
 @SpringBootApplication
-// @EnableEureakServer±íÊ¾¿ªÆô×¢²áÖĞĞÄ
+// @EnableEureakServerè¡¨ç¤ºå¼€å¯æ³¨å†Œä¸­å¿ƒ
 @EnableEurekaServer
 public class AppEureka9100 {
 	
