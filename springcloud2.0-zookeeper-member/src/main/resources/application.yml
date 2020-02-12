@@ -1,0 +1,14 @@
+# 服务端口号
+server:
+  port: 8001
+#服务别名
+spring:
+  application:
+    name: zk-member
+  # 服务注册到zookeeper注册中心的地址
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+      # 加上spring.cloud.zookeeper.discovery.instance-host配置项，防止zk注册中心中的address是windows的名字
+      discovery:
+        instance-host: 192.168.5.102
