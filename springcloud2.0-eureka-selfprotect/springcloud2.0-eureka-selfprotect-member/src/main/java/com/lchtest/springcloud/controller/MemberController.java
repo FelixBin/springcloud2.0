@@ -14,5 +14,10 @@ public class MemberController {
 	public String getMember() {
 		return "member service.port=" + port;
 	}
+	
+	@RequestMapping("/member/getmember")
+	public String getMemberByFeign() {
+		return "member service port=" + port;
+	}
 
 }
