@@ -1,6 +1,6 @@
 # 会员服务项目端口号
 server:
-  port: 8000
+  port: 8070
 # 服务别名--服务注册到注册中心的名称
 spring:
   application:

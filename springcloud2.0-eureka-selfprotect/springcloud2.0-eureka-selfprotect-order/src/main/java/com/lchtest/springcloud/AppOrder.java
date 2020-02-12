@@ -19,7 +19,7 @@ public class AppOrder {
 	// 将RestTemplate交给spring容器管理，controller中注入并使用
 	@Bean
 	// 如果使用rest方式以别名方式调用服务提供者的接口，需要依赖ribbon负载均衡器， @LoadBalanced 表示启用ribbon负载均衡
-	@LoadBalanced
+//	@LoadBalanced   // 手写模拟本地负载均衡时，该注解需要注释掉！
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
