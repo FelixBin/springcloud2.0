@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 /**
  * springcloud使用consul作为注册中心
+ * 启动服务后，http://localhost:8500/ui/dc1/services 查看consul注册中心上面的服务信息
  * @author pc
  */
 @SpringBootApplication
