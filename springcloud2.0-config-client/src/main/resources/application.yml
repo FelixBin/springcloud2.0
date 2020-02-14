@@ -1,0 +1,27 @@
+spring:
+  application:
+    #注册中心应用名称
+    name:  test-configClient
+  cloud:
+    config:
+    #读取的版本，通过后缀确定是开发环境or测试环境or生产环境
+      profile: prd
+      discovery:
+        #读取config-server在注册中心上注册的别名
+        service-id: config-server
+        #开启读取权限
+        enabled: true
+#eureka服务注册地址    
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:8100/eureka    
+server:
+  port: 8882
+  
+#开启所有端点  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
