@@ -29,6 +29,7 @@ public class MemberServiceImpl extends BaseApiService implements IMemberService 
 	@Override
 	public ResponseBase getUserInfo() {
 		try {
+			System.out.println("进入memberservice-getUserInfo(),开始处理/getUserInfo接口请求");
 			// 会员服务接口产生1.5s延迟
 			Thread.sleep(1500);
 		} catch (InterruptedException e) {

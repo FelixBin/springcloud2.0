@@ -30,9 +30,11 @@ feign:
     enabled: true 
 # 暂时关闭hystrix超时，否则调用member服务的getUserInfo接口时，会直接走服务降级，而不是调用接口逻辑
 # 生产环境不应关闭hystrix超时时间，而是合理设置超时时间
-hystrix: 
-  command: 
-    default: 
-      execution:  
-        timeout:  
-          enabled:  false
+
+#演示调用/orderToMemberUserInfoHystrix2接口进行服务降级时，把hystrix超时配置注释掉，或者改成开启
+#hystrix: 
+#  command: 
+#    default: 
+#      execution:  
+#        timeout:  
+#          enabled:  false
