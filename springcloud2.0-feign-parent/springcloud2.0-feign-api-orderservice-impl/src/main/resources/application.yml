@@ -1,0 +1,38 @@
+#服务启动端口号
+server:
+  port: 8005
+  #设置最多同时10个线程去处理请求
+  tomcat:
+    max-threads: 10
+#服务名称(服务注册到eureka名称)  
+spring:
+    application:
+        name: app-order
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka        
+    #把自己注册到注册中心
+    register-with-eureka: true
+    # 从eureka上获取注册信息
+    fetch-registry: true
+ribbon:
+  # 不设置超时时间，调用会员服务1.5s延时的接口时会报 redaTimeOut 错误
+  # 建立连接后从服务器读取到可用资源所用的时间
+  ReadTimeout: 5000
+  # 建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间 
+  ConnectionTimeout: 5000
+  
+  #开启Hystrix服务熔断
+feign: 
+  hystrix: 
+    enabled: true 
+# 暂时关闭hystrix超时，否则调用member服务的getUserInfo接口时，会直接走服务降级，而不是调用接口逻辑
+# 生产环境不应关闭hystrix超时时间，而是合理设置超时时间
+hystrix: 
+  command: 
+    default: 
+      execution:  
+        timeout:  
+          enabled:  false
