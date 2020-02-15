@@ -1,0 +1,24 @@
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://localhost:8100/eureka
+spring:
+  application:
+    #configserver在注册中心的应用名称
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          ###git环境地址
+          uri: https://gitee.com/liuch890228/distributed_profile_learning.git
+          ####搜索目录,自己在码云上的工程的仓库里面创建的目录名称
+          search-paths:
+            - configtest  
+      #读取的配置的分支      
+      label: master
+# 码云创建仓库时选择的是公开，这里不用配置密码
+#configserver服务的端口号      
+server:
+  port: 8888
