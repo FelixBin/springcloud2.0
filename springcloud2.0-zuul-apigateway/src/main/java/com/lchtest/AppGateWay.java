@@ -2,11 +2,16 @@ package com.lchtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
+
 /**
- * Î¢·şÎñÍø¹Ø
- * @EnableZuulProxy ¿ªÆôÍø¹Ø´úÀí£¡
+ * å¾®æœåŠ¡ç½‘å…³
+ * 
+ * @EnableZuulProxy å¼€å¯ç½‘å…³ä»£ç†ï¼
  * @author pc
  *
  */
@@ -16,5 +21,12 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 public class AppGateWay {
 	public static void main(String[] args) {
 		SpringApplication.run(AppGateWay.class, args);
+	}
+
+	// zuulé…ç½®èƒ½å¤Ÿä½¿ç”¨configå®ç°å®æ—¶æ›´æ–°
+	@RefreshScope
+	@ConfigurationProperties("zuul")
+	public ZuulProperties zuulProperties() {
+		return new ZuulProperties();
 	}
 }

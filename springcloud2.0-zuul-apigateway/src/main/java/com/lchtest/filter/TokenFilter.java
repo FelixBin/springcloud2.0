@@ -7,67 +7,67 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 /**
- * Íø¹Ø·şÎñ¹ıÂËÆ÷
+ * ç½‘å…³æœåŠ¡è¿‡æ»¤å™¨
  * @author pc
- * @Component×¢½â£¬½«@Component×¢Èëµ½springÈİÆ÷
+ * @Componentæ³¨è§£ï¼Œå°†@Componentæ³¨å…¥åˆ°springå®¹å™¨
  */
 @Component
 public class TokenFilter extends ZuulFilter{
 	
 	/**
-	 * ¹ıÂËÆ÷ÀàĞÍ
+	 * è¿‡æ»¤å™¨ç±»å‹
 	 */
 	private static final String FILTE_RTYPE = "pre";
 	
 	/**
-	 * ¹ıÂËÆ÷ÊÇ·ñÉúĞ§
+	 * è¿‡æ»¤å™¨æ˜¯å¦ç”Ÿæ•ˆ
 	 */
 	private static final boolean SHOULD_FILTER_EFFECTIVE  = true;
 	
 	/**
-	 * ½Ó¿Ú¼øÈ¨Ê§°Ü
+	 * æ¥å£é‰´æƒå¤±è´¥
 	 */
 	private static final int UNAUTHORIZED = 401;
 
 	/**
-	 * ÅĞ¶Ï¹ıÂËÆ÷ÊÇ·ñÉúĞ§
+	 * åˆ¤æ–­è¿‡æ»¤å™¨æ˜¯å¦ç”Ÿæ•ˆ
 	 */
 	public boolean shouldFilter() {
 		return SHOULD_FILTER_EFFECTIVE;
 	}
 
 	/**
-	 * ¹ıÂËÆ÷ÒµÎñÂß¼­
+	 * è¿‡æ»¤å™¨ä¸šåŠ¡é€»è¾‘
 	 */
 	public Object run() throws ZuulException {
-		//À¹½ØËùÓĞ·şÎñ½Ó¿Ú£¬ÅĞ¶Ï·şÎñ½Ó¿ÚÉÏÊÇ·ñÓĞ´«µİuserToken²ÎÊı
-		//1.»ñÈ¡ÉÏÏÂÎÄ
+		//æ‹¦æˆªæ‰€æœ‰æœåŠ¡æ¥å£ï¼Œåˆ¤æ–­æœåŠ¡æ¥å£ä¸Šæ˜¯å¦æœ‰ä¼ é€’userTokenå‚æ•°
+		//1.è·å–ä¸Šä¸‹æ–‡
 		RequestContext currentContext = RequestContext.getCurrentContext();
 		
-		//2.»ñÈ¡request¶ÔÏó
+		//2.è·å–requestå¯¹è±¡
 		HttpServletRequest request = currentContext.getRequest();
 		
-		//3.»ñÈ¡token tokenÒ»°ã¶¼·ÅÔÚÇëÇóÍ·ÀïÃæ·¢ËÍÇëÇó£¬Òò´Ë»ñÈ¡tokenÒ²ÊÇ´ÓÇëÇóÍ·ÀïÃæ»ñÈ¡
+		//3.è·å–token tokenä¸€èˆ¬éƒ½æ”¾åœ¨è¯·æ±‚å¤´é‡Œé¢å‘é€è¯·æ±‚ï¼Œå› æ­¤è·å–tokenä¹Ÿæ˜¯ä»è¯·æ±‚å¤´é‡Œé¢è·å–
 //		String token = request.getHeader("token");
-		// ÕâÀïÄ£Äâ´ÓÇëÇó²ÎÊıÖĞ»ñÈ¡token
+		// è¿™é‡Œæ¨¡æ‹Ÿä»è¯·æ±‚å‚æ•°ä¸­è·å–token
 		String token = request.getParameter("userToken");
 		
 		if(StringUtils.isEmpty(token)) {
-			// ²»ÍùÏÂÖ´ĞĞ£¬ÓÉÍø¹Ø·şÎñÖ±½ÓÏìÓ¦¿Í»§¶Ë
+			// ä¸å¾€ä¸‹æ‰§è¡Œï¼Œç”±ç½‘å…³æœåŠ¡ç›´æ¥å“åº”å®¢æˆ·ç«¯
 			currentContext.setSendZuulResponse(false);
-			// ·µ»Ø´íÎóÌáÊ¾
+			// è¿”å›é”™è¯¯æç¤º
 			currentContext.setResponseBody("userToken is missed.");
 			currentContext.setResponseStatusCode(UNAUTHORIZED);
 			return null;
 		} 
 		
-		// ½Ó¿Ú¼øÈ¨Í¨¹ı£¬Õı³£µ÷ÓÃÆäËû·şÎñ½Ó¿Ú
+		// æ¥å£é‰´æƒé€šè¿‡ï¼Œæ­£å¸¸è°ƒç”¨å…¶ä»–æœåŠ¡æ¥å£
 		return null;
 	}
 
 	/**
-	 * ¹ıÂËÆ÷ÀàĞÍ£º
-	 * pre:ÔÚÇëÇó´¦ÀíÖ®Ç°Ö´ĞĞ
+	 * è¿‡æ»¤å™¨ç±»å‹ï¼š
+	 * pre:åœ¨è¯·æ±‚å¤„ç†ä¹‹å‰æ‰§è¡Œ
 	 */
 	@Override
 	public String filterType() {
@@ -75,8 +75,8 @@ public class TokenFilter extends ZuulFilter{
 	}
 
 	/**
-	 * ¹ıÂËÆ÷µÄÖ´ĞĞË³Ğò(ÓÅÏÈ¼¶)
-	 * Ò»¸öÇëÇóÔÚÍ¬Ò»½×¶Î´æÔÚ¶à¸ö¹ıÂËÆ÷µÄÊ±ºò£¬´æÔÚ¹ıÂËÆ÷µÄÖ´ĞĞË³Ğò
+	 * è¿‡æ»¤å™¨çš„æ‰§è¡Œé¡ºåº(ä¼˜å…ˆçº§)
+	 * ä¸€ä¸ªè¯·æ±‚åœ¨åŒä¸€é˜¶æ®µå­˜åœ¨å¤šä¸ªè¿‡æ»¤å™¨çš„æ—¶å€™ï¼Œå­˜åœ¨è¿‡æ»¤å™¨çš„æ‰§è¡Œé¡ºåº
 	 */
 	@Override
 	public int filterOrder() {

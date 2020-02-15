@@ -1,4 +1,4 @@
-#注册 中心
+#注册中心
 eureka:
   client:
     serviceUrl:
@@ -9,18 +9,37 @@ server:
 spring:
   application:
     name: service-zuul
-#配置网关反向代理    
-zuul:
-  #定义转发服务的规则(路由规则)
-  routes:
-    api-a:   # api-a这里可以随便命名
-      #以 /api-member/开头的接口请求转发到会员服务
-      path: /api-member/**
-      #serviceId是会员服务别名
-      serviceId: app-member
-      #问题：如果会员服务做了集群，如何转发? zuul网关默认整合了ribbon，自动失效负载均衡轮询效果！
-    api-b:
-      #客户端请求以127.0.0.1:80/api-order/开头的接口请求转发到订单服务
-      path: /api-order/**
-      #订单服务别名
-      serviceId: app-order
+  # zuul动态网关从git上读取配置文件的版本
+  # git配置文件地址：https://gitee.com/liuch890228/distributed_profile_learning/blob/master/configtest/service-zuul-dev.yml
+  cloud:
+    config:
+    #读取的版本，通过后缀确定是开发环境or测试环境or生产环境
+      profile: dev
+      discovery:
+        #读取config-server在注册中心上注册的别名
+        service-id: config-server
+        #开启读取权限
+        enabled: true
+        
+#配置网关反向代理(搭建zuul动态网关，下面这个配置放到git上(网关作为configclient从configserver读取git上的配置)然后开启所有监控中心接口)    
+#zuul:
+#  #定义转发服务的规则(路由规则)
+#  routes:
+#    api-a:   # api-a这里可以随便命名
+#      #以 /api-member/开头的接口请求转发到会员服务
+#      path: /api-member/**
+#      #serviceId是会员服务别名
+#      serviceId: app-member
+#      #问题：如果会员服务做了集群，如何转发? zuul网关默认整合了ribbon，自动失效负载均衡轮询效果！
+#    api-b:
+#      #客户端请求以127.0.0.1:80/api-order/开头的接口请求转发到订单服务
+#      path: /api-order/**
+#      #订单服务别名
+#      serviceId: app-orde
+
+# zuul动态网关-开启监控中心所有端口
+management:  
+  endpoints:
+    web:  
+      exposure: 
+        include: "*"
