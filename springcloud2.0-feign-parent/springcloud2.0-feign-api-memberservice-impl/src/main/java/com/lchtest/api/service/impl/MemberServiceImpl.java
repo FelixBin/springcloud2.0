@@ -1,5 +1,9 @@
 package com.lchtest.api.service.impl;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +19,16 @@ import com.lchtest.common.base.ResponseBase;
 @RestController
 public class MemberServiceImpl extends BaseApiService implements IMemberService {
 
+	
+	@Value("${server.port}")
+	private String serverPort;
+
+	@GetMapping("/")
+	public String index(HttpServletRequest req) {
+		System.out.println("我是首页.....");
+		return "我是member服务" + serverPort;
+	}
+	
 	@RequestMapping("/getMember")
 	@Override
 	public UserEntity getMember(String name) {
