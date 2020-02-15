@@ -1,7 +1,11 @@
 package com.lchtest.api.service.impl;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +28,15 @@ public class OrderServiceImpl extends BaseApiService implements IOrderService {
 
 	@Autowired
 	private MemberServiceFeign memberServiceFeign;
+	
+	@Value("${server.port}")
+	private String serverPort;
+
+	@GetMapping("/")
+	public String index(HttpServletRequest req) {
+		System.out.println("我是首页.....");
+		return "我是order服务" + serverPort;
+	}
 
 	/**
 	 * http://localhost:8005/orderToMember?name=admin
