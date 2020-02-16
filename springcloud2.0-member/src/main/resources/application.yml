@@ -4,7 +4,7 @@ server:
 # 服务别名--服务注册到注册中心的名称
 spring:
   application:
-    name: member
+    name: app-member
 eureka:
   client:
     service-url:
