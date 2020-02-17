@@ -1,5 +1,9 @@
 server:
   port: 9100
+    # 测试时关闭自我保护机制，保证不可用服务及时踢出
+  enable-self-preservation: false
+    ##剔除失效服务间隔
+  eviction-interval-timer-in-ms: 2000
 
 # 定义eureka集群时，需要定义集群服务名称，各节点的名称定义要一致
 spring:
