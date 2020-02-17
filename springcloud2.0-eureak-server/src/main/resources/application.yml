@@ -5,11 +5,11 @@ eureka:
   instance:
     hostname: 127.0.0.1
         #注册到服务注册中心的实例显示的是ip
-    prefer-ip-address: true
+#    prefer-ip-address: true
   client:
     service-url:
       # 8100注册到9100上
-      defaultZone: http://127.0.0.1:9100/eureka
+      defaultZone: http://127.0.0.1:9100/eureka/
      # defaultZone: http://localhost:8100/eureka/
     # 是否将自己注册到注册中心，只有一个注册中心时选择false,注册中心为集群的时候需要设置为true
 #    register-with-eureka: false
