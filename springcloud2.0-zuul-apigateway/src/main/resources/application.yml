@@ -1,3 +1,4 @@
+############################  搭建动态网关时使用  ##########################
 #注册中心
 eureka:
   client:
@@ -21,22 +22,6 @@ spring:
         #开启读取权限
         enabled: true
         
-#配置网关反向代理(搭建zuul动态网关，下面这个配置放到git上(网关作为configclient从configserver读取git上的配置)然后开启所有监控中心接口)    
-#zuul:
-#  #定义转发服务的规则(路由规则)
-#  routes:
-#    api-a:   # api-a这里可以随便命名
-#      #以 /api-member/开头的接口请求转发到会员服务
-#      path: /api-member/**
-#      #serviceId是会员服务别名
-#      serviceId: app-member
-#      #问题：如果会员服务做了集群，如何转发? zuul网关默认整合了ribbon，自动失效负载均衡轮询效果！
-#    api-b:
-#      #客户端请求以127.0.0.1:80/api-order/开头的接口请求转发到订单服务
-#      path: /api-order/**
-#      #订单服务别名
-#      serviceId: app-orde
-
 # zuul动态网关-开启监控中心所有端口
 management:  
   endpoints:
