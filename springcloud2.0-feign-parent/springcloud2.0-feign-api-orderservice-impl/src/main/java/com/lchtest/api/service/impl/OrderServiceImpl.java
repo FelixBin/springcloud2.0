@@ -111,11 +111,7 @@ public class OrderServiceImpl extends BaseApiService implements IOrderService {
 	 */
 	@RequestMapping("/orderToMemberUserInfoHystrix2")
 	public ResponseBase orderToMemberUserInfoHystrix2() {
-		/*
-		 * 启动eureka8100，member服务和order服务，浏览器访问http://localhost:8005/
-		 * orderToMemberUserInfoHystrix，
-		 * 返回{"rtnCode":200,"msg":"返回友好提示：服务降级，服务器忙，稍后重试","data":null}
-		 */
+		
 		System.out.println("orderToMemberUserInfoHystrix2: 当前线程池名称" + Thread.currentThread().getName());
 		// 此处代表业务逻辑代码
 

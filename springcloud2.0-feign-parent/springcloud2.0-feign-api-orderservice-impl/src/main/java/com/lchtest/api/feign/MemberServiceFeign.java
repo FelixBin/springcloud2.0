@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lchtest.api.entity.UserEntity;
 import com.lchtest.api.fallback.MemberServiceFallback;
 import com.lchtest.api.service.IMemberService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 /**
  * Feign客户端定义，继承IMemberService，这样就可以避免类似下面这样的重复代码了： @RequestMapping("/getMember")
@@ -15,8 +16,8 @@ import com.lchtest.api.service.IMemberService;
  * @author pc
  *
  */
-//@FeignClient("app-member")
-@FeignClient(name = "app-member", fallback = MemberServiceFallback.class)
+//@FeignClient("app-member")  // 使用@HystrixCommand注解进行服务降级时使用
+@FeignClient(name = "app-member", fallback = MemberServiceFallback.class)  //使用类定义统一的fallback接口时使用
 public interface MemberServiceFeign extends IMemberService {
 
 	/*
